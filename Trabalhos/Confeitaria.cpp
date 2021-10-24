@@ -13,7 +13,7 @@ int main()
 
     if(quantidadeDoce <= 0)
     {
-        printf("Quantidade de doce (em Kg) invalida, tente novamente");
+        printf("Quantidade de doce (em Kg) invalida");
         exit(0);
     }
 
@@ -66,12 +66,11 @@ int main()
         
     default:
         printf("Digite um numero valido (1 a 3)");
+        exit(0);
         break;
     }
 
-    printf("Peso: %.2fKg\n", quantidadeDoce);
-    printf("Valor do Quilo: %.2f\n", valorQuilo);
-    printf("Total a pagar: %.2f\n", valorDoce);
+    printf("Peso: %.2fKg\nValor do Quilo: %.2f\nTotal a pagar: %.2f\n", quantidadeDoce, valorQuilo, valorDoce);
 
     return 0;
 }

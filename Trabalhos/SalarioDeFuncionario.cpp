@@ -4,10 +4,13 @@
 int main()
 {
     int diasFaltados, qtdFilho, imposto;
-    float valorBolsaEducacao, salarioBruto, salarioLiquido, horasTrabalhoVoluntario;
+    float salarioLiquido, salarioBruto, horasTrabalhoVoluntario, bonusHorasTrabalhoVoluntario, valorVendasMes, bonusValorVendas, descontoDiasFaltados, valorBolsaFilho;
 
     printf("Digite o salario mensal bruto do funcionario: ");
     scanf("%f", &salarioBruto);
+
+    printf("Digite o valor de vendas do mes: ");
+    scanf("%f", &valorVendasMes);
 
     printf("Digite o total de dias faltados: ");
     scanf("%d", &diasFaltados);
@@ -18,30 +21,38 @@ int main()
     printf("Digite a quantidade de filhos com menos de 15 anos do funcionario: ");
     scanf("%d", &qtdFilho);
 
-    salarioLiquido = salarioBruto;
 
-    if(qtdFilho > 0)
+    if(valorVendasMes > 10000)
     {
-        salarioLiquido = salarioLiquido + (250 * qtdFilho);
+        bonusValorVendas = salarioBruto * 0.15;
     }
+
 
     if(diasFaltados > 5)
     {
-        salarioLiquido = salarioLiquido - (salarioLiquido * 0.10);
+        descontoDiasFaltados = salarioBruto * 0.10;
     }
     else
+    if(diasFaltados > 0 && diasFaltados <= 5)
     {
-        salarioLiquido = salarioLiquido - (salarioLiquido * 0.025);
+        descontoDiasFaltados = salarioBruto * 0.025;
     }
 
     if(horasTrabalhoVoluntario > 10)
     {
-        salarioLiquido = salarioLiquido + (10 * horasTrabalhoVoluntario);
+        bonusHorasTrabalhoVoluntario = 10 * horasTrabalhoVoluntario;
     }
     else
     {
-        salarioLiquido = salarioLiquido + (8 * horasTrabalhoVoluntario);
+        bonusHorasTrabalhoVoluntario = 8 * horasTrabalhoVoluntario;
     }
+
+    if(qtdFilho > 0)
+    {
+        valorBolsaFilho = 250 * qtdFilho;
+    }
+
+    salarioLiquido = salarioBruto + bonusValorVendas + bonusHorasTrabalhoVoluntario + valorBolsaFilho - descontoDiasFaltados;
 
     if(salarioLiquido > 10750)
     {
@@ -50,14 +61,14 @@ int main()
     }
     else
     {
-        if(salarioLiquido >= 5500.01 && salarioLiquido <= 10750.00)
+        if(salarioLiquido > 5500 && salarioLiquido <= 10750)
         {
             imposto = 9;
             salarioLiquido = salarioLiquido - (salarioLiquido * 0.09);
         }
         else
         {
-            if(salarioLiquido >= 2460.00 && salarioLiquido <= 5500.00)
+            if(salarioLiquido > 2460 && salarioLiquido <= 5500)
             {
                 imposto = 7;
                 salarioLiquido = salarioLiquido - (salarioLiquido * 0.07);
